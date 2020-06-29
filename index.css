@@ -1,0 +1,44 @@
+html, body {
+    margin: 0px;
+    padding: 0px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+#container {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+}
+
+#menu {
+    border: 1px solid blue;
+    height: 80px;
+}
+
+#menu-bar {
+    border: 1px solid grey;
+    height: 20px;
+}
+
+#menu-container {
+    border: 1px solid magenta;
+    height: 60px;
+}
+
+#formula-bar {
+    border: 1px solid green;
+    height: 20px;
+}
+
+#content-container {
+    border: 1px solid red;
+    height: calc(100vh - 122px);
+}
+
+#sheets-bar {
+    border: 1px solid black;
+    height: 20px;
+}
