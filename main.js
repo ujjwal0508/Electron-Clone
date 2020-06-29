@@ -1,4 +1,11 @@
 const { app, BrowserWindow } = require('electron')
+const ejs = require('ejs-electron')
+const reload = require('electron-reload')
+const path = require('path')
+
+ejs.data({
+    'title':'My Excel-1'
+})
 
 function createWindow () {
   // Create the browser window.
@@ -11,7 +18,7 @@ function createWindow () {
   })
 
   // and load the index.html of the app.
-  win.loadFile('index.html').then(function(){
+  win.loadFile('index.ejs').then(function(){
     win.removeMenu();
     win.maximize();
     win.show();
@@ -20,6 +27,10 @@ function createWindow () {
 
   // Open the DevTools.
 }
+
+reload(__dirname, {
+    electron: path.join(__dirname, 'node_modules/.bin/electron.cmd')
+});
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
