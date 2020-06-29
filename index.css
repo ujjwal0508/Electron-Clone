@@ -36,9 +36,26 @@ html, body {
 #content-container {
     border: 1px solid red;
     height: calc(100vh - 122px);
+    overflow: auto;
 }
 
 #sheets-bar {
     border: 1px solid black;
     height: 20px;
+}
+
+#grid {
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.cell {
+    border: 1px solid black;
+    width: 75px;
+    height: 25px;
 }

@@ -1,22 +1,34 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title><%= title %></title>
-        <link rel="stylesheet" href="./index.css">
-    </head>
 
-    <body>
-        <div class="container">
-            <div id="menu">
-                <div id="menu-bar">menu bar</div>
-                <div id="menu-container">menu container</div>
-            </div>
-            <div id="formula-bar">formula bar</div>
-            <div id="content-container">content container</div>
-            <div id="sheets-bar">sheets bar</div>
-            <div></div>
-            <div></div>
+<head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    <div class="container">
+        <div id="menu">
+            <div id="menu-bar">menu bar</div>
+            <div id="menu-container">menu container</div>
         </div>
+        <div id="formula-bar">formula bar</div>
+        <div id="content-container">
+            <div id="grid">
+                <% for(let i=0;i < rows; i++) {%>
+                <div class="row">
+                    <% for(let j=0; j<cols; j++) {%>
+                    <div class="cell" contenteditable="true"></div>
+                    <% } %>
+                </div>
+                <% } %>
+            </div>
+        </div>
+        <div id="sheets-bar">sheets bar</div>
+        <div></div>
+        <div></div>
+    </div>
 
-    </body>
+</body>
+
 </html>
