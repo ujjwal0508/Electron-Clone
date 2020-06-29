@@ -4,13 +4,21 @@
 <head>
     <title><%= title %></title>
     <link rel="stylesheet" href="./index.css">
+    <script type="text/javascript" src="./index.js"></script>
 </head>
 
 <body>
     <div class="container">
         <div id="menu">
-            <div id="menu-bar">menu bar</div>
-            <div id="menu-container">menu container</div>
+            <div id="menu-bar">
+                <div class="menu-bar-item">File </div>
+            </div>
+            <div id="menu-container">
+                    <div id="new">New</div>
+                    <div id="open">Open</div>
+                    <div id="save">Save</div>
+                </div>
+            </div>
         </div>
         <div id="formula-bar">formula bar</div>
         <div id="content-container">
@@ -30,7 +38,7 @@
                 <% for(let i=0;i < rows; i++) {%>
                 <div class="row">
                     <% for(let j=0; j<cols; j++) {%>
-                    <div class="cell" contenteditable="true"></div>
+                    <div class="cell" contenteditable="true" row-id=<%=i%> col-id=<%=j%>></div>
                     <% } %>
                 </div>
                 <% } %>

@@ -28,6 +28,33 @@ html, body {
     height: 60px;
 }
 
+#menu-bar > div {
+    display: inline-block;
+    padding-left: 5px;
+}
+
+.menu-bar-item:hover {
+    transform: scale(1.1);
+    border-bottom: 0.5px solid red;
+    cursor: pointer;
+}
+
+.menu-bar-item.selected {
+    border: 0px 2px;
+    color: hotpink;
+}
+
+#menu-container > div {
+    display: inline-block;
+    padding-left: 5px;
+}
+
+#menu-container > div:hover {
+    transform: scale(1.1);
+    border-bottom: 0.5px solid red;
+    cursor: pointer;
+}
+
 #formula-bar {
     border: 1px solid green;
     height: 20px;
