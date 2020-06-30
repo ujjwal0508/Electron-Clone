@@ -5,6 +5,7 @@ html, body {
 
 * {
     box-sizing: border-box;
+    outline: none;
 }
 
 #container {
@@ -137,4 +138,8 @@ html, body {
 
 #formula-input {
     width: calc(100vw - 75px);
+}
+
+#grid .cell.selected {
+    border : 1.5px solid red;
 }

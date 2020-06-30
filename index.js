@@ -5,6 +5,7 @@ const dialog = require('electron').remote.dialog
 $(document).ready(function () {
 
     let data = [];
+    let lsc;
 
     $('.menu-bar-item').on('click', function () {
         $('.menu-bar-item').removeClass('selected');
@@ -17,13 +18,18 @@ $(document).ready(function () {
         $('#grid').find('.row').each(function () {
             let row = [];
             $(this).find('.cell').each(function () {
-                let cell = '';
+                let cell = {
+                    value: '',
+                    formula: ''
+                };
 
-                $(this).html('');
+                $(this).html(cell.value);
                 row.push(cell);
             })
             data.push(row);
         })
+
+        $('#grid .cell').eq(0).click();
     })
 
     $('#open').on('click', async function () {
@@ -34,10 +40,8 @@ $(document).ready(function () {
         $('#grid').find('.row').each(function () {
             $(this).find('.cell').each(function () {
 
-                let rowId = parseInt($(this).attr('row-id'));
-                let colId = parseInt($(this).attr('col-id'));
-
-                $(this).html(data[rowId][colId]);
+                let cell = getCell(this);
+                $(this).html(cell.value);
             })
         })
 
@@ -51,13 +55,13 @@ $(document).ready(function () {
 
     $('#grid .cell').on('keyup', function () {
 
-        let { rowId, colId } = getIndices(this);
-        data[rowId][colId] = $(this).html();
+        let cell = getCell(this);
+        cell.value = $(this).html();
     })
 
-    function getIndices(cell) {
-        let rowId = parseInt($(cell).attr('row-id'));
-        let colId = parseInt($(cell).attr('col-id'));
+    function getIndices(cellObject) {
+        let rowId = parseInt($(cellObject).attr('row-id'));
+        let colId = parseInt($(cellObject).attr('col-id'));
 
         return {
             rowId: rowId,
@@ -65,23 +69,39 @@ $(document).ready(function () {
         }
     }
 
+    function getCellAddress(cellObject) {
+
+        let { rowId, colId } = getIndices(cellObject);
+        let colAddress = String.fromCharCode(colId + 65);
+        return colAddress + (rowId + 1);
+    }
+
+    function getCell(cellObject) {
+        let { rowId, colId } = getIndices(cellObject);
+        return data[rowId][colId];
+    }
+
     function init() {
         $('#new').click();
     }
 
-    $('#grid .cell').on('click', function () {
+    $('#grid .cell').on('click', function (e) {
 
+        lsc = this;
         let cellAddress = getCellAddress(this);
         $('#text-input').val(cellAddress);
 
+        $('#formula-input').val(getCell(this).formula);
+
+        if (!e.ctrlKey)
+            $('#grid .cell').removeClass('selected');
+        $(this).addClass('selected');
     })
 
-    function getCellAddress(cell) {
-
-        let { rowId, colId } = getIndices(cell);
-        let colAddress = String.fromCharCode(colId + 65);
-        return colAddress + (rowId + 1);
-    }
+    $('#formula-input').on('blur', function(){
+        let cell = getCell(lsc);
+        cell.formula = $(this).val();
+    })
 
     init();
 })
