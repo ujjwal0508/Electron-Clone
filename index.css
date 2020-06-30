@@ -58,6 +58,8 @@ html, body {
 #formula-bar {
     border: 1px solid green;
     height: 20px;
+    display: flex;
+    flex-direction: row;
 }
 
 #content-container {
@@ -127,4 +129,12 @@ html, body {
     width: 75px;
     height: 25px;
     text-align: center;
+}
+
+#text-input {
+    max-width: 75px;
+}
+
+#formula-input {
+    width: calc(100vw - 75px);
 }
